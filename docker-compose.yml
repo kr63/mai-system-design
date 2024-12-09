@@ -1,0 +1,23 @@
+services:
+  composition:
+    container_name: composition
+    build:
+      context: ./composition/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+#  postgres:
+#    image: postgres:12.4-alpine
+#    container_name: sutp-dbadapter-postgresql
+#    restart: on-failure
+#    environment:
+#      POSTGRES_DB: sutp-db-adapter
+#      POSTGRES_USER: sutp-db-adapter
+#      POSTGRES_PASSWORD: sutp-db-adapter
+#    ports:
+#      - "5432:5432"
+#    command:
+#      postgres -c log_statement=all
+#    volumes:
+#      - ./docker/postgresql/data:/var/lib/postgresql/data
