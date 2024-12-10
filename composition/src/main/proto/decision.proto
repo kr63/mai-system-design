@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.proto";
+option java_outer_classname = "DecisionProto";
+
+service Decision {
+  rpc GetDecision (DecisionRequest) returns (DecisionReply) {
+  }
+}
+
+message DecisionRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message DecisionReply {
+  bool authorization = 1;
+}
