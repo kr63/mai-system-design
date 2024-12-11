@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.proto";
+option java_outer_classname = "ScoreProto";
+
+service Score {
+  rpc GetScore (ScoreRequest) returns (ScoreReply) {
+  }
+}
+
+message ScoreRequest {
+  string login = 1;
+}
+
+message ScoreReply {
+  optional float value = 1;
+}

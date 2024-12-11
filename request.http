@@ -1,0 +1,12 @@
+GRPC localhost:9091/Score/GetScore
+
+{
+  "login": "login1"
+}
+
+###
+GRPC localhost:9091/Score/GetScore
+
+{
+  "login": "login"
+}
