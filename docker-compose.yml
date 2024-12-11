@@ -13,4 +13,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9091:9091"
-
+  decision:
+    container_name: scoring
+    build:
+      context: ./decision/
+      dockerfile: Dockerfile
+    ports:
+      - "9092:9092"

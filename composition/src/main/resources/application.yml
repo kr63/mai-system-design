@@ -1,0 +1,10 @@
+composition:
+  threshold: 2.0
+grpc:
+  client:
+    scoring:
+      address: static://localhost:9091
+      negotiation-type: plaintext
+    decision:
+      address: static://localhost:9092
+      negotiation-type: plaintext

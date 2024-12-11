@@ -10,6 +10,9 @@ public class Controller {
 
     private final CompositionService service;
 
+    /**
+     * Авторизация пользователя
+     */
     @GetMapping
     public CompositionResponse getUser(CompositionRequest request) {
         return service.getUser(request);

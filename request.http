@@ -10,3 +10,11 @@ GRPC localhost:9091/Score/GetScore
 {
   "login": "login"
 }
+
+###
+GRPC localhost:9092/Decision/GetDecision
+
+{
+  "login": "login1",
+  "password": "pass"
+}

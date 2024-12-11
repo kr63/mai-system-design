@@ -14,5 +14,5 @@ message ScoreRequest {
 }
 
 message ScoreReply {
-  int32 score = 1;
+  optional float value = 1;
 }
