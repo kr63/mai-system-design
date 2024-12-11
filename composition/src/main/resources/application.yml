@@ -1,3 +1,6 @@
+spring:
+  application:
+    name: composition
 composition:
   threshold: 2.0
 grpc:

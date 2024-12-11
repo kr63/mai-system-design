@@ -27,9 +27,11 @@ public class ScoringService extends ScoreGrpc.ScoreImplBase {
     @Override
     public void getScore(ScoreRequest request, StreamObserver<ScoreReply> responseObserver) {
         log.info(">>> request: {}", request);
-        responseObserver.onNext(ScoreReply.newBuilder()
+        var reply = ScoreReply.newBuilder()
                 .setValue(scores.getOrDefault(request.getLogin(), 0))
-                .build());
+                .build();
+        log.info(">>> response: {}", reply);
+        responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
 

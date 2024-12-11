@@ -1,3 +1,6 @@
+spring:
+  application:
+    name: scoring
 grpc:
   server:
     port: 9091

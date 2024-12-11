@@ -26,11 +26,12 @@ public class DecisionService  extends DecisionGrpc.DecisionImplBase {
 
     @Override
     public void getDecision(DecisionRequest request, StreamObserver<DecisionReply> responseObserver) {
-        log.info(">>> Received request: {}", request);
+        log.info(">>> request: {}", request);
 
         var reply = DecisionReply.newBuilder()
                 .setAuthorization(decision.getOrDefault(request.getLogin(), false))
                 .build();
+        log.info(">>> response: {}", reply);
 
         responseObserver.onNext(reply);
         responseObserver.onCompleted();

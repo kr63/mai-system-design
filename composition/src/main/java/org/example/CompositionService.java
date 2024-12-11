@@ -1,6 +1,7 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.example.proto.DecisionGrpc;
 import org.example.proto.DecisionRequest;
@@ -8,6 +9,7 @@ import org.example.proto.ScoreGrpc;
 import org.example.proto.ScoreRequest;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CompositionService {
@@ -19,6 +21,7 @@ public class CompositionService {
     private DecisionGrpc.DecisionBlockingStub decision;
 
     public CompositionResponse getUser(CompositionRequest request) {
+        log.info(">>> request: {}", request);
         var scoreReply = score.getScore(this.createScoreRequest(request));
 
         if (scoreReply.getValue() < compositionProperties.getThreshold()) {
