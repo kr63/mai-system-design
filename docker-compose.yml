@@ -1,20 +1,21 @@
 services:
   composition:
-    container_name: composition
     build:
       context: ./composition/
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     depends_on:
       - scoring
       - decision
-    networks:
-      mai-system-design:
     environment:
       grpc.client.scoring.address: static://scoring:9091
       grpc.client.decision.address: static://decision:9092
       composition.threshold: 3.0
+    labels:
+      - "traefik.http.routers.composition.rule=Host(`composition.docker.localhost`)"
+    deploy:
+      replicas: 2
+    networks:
+      - mai-system-design
 
   scoring:
     container_name: scoring
@@ -24,7 +25,7 @@ services:
     ports:
       - "9091:9091"
     networks:
-      mai-system-design:
+      - mai-system-design
 
   decision:
     container_name: decision
@@ -34,7 +35,25 @@ services:
     ports:
       - "9092:9092"
     networks:
-      mai-system-design:
+      - mai-system-design
+
+  reverse-proxy:
+    image: traefik:v3.2
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mai-system-design
+
+  whoami:
+    image: traefik/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+    networks:
+      - mai-system-design
 
 networks:
   mai-system-design:

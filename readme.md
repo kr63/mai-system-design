@@ -14,4 +14,4 @@ docker-compose up -d
 ```
 
 # swagger
-http://localhost:8080/swagger-ui/index.html
+http://composition.docker.localhost/swagger-ui/index.html
